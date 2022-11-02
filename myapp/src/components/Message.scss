@@ -1,0 +1,12 @@
+$main_color_text: rgba(0, 0, 0, 0.6);
+$glow_color_text: rgba(255, 255, 255, 0.7);
+$glow_color_text_hover: rgba(255, 255, 255, 0.9);
+
+.message__header {
+    color: $main_color_text;
+    text-shadow: 0px 0px 6px $glow_color_text;
+
+    &:hover {
+        text-shadow: 0px 0px 6px $glow_color_text_hover;
+    }
+}
