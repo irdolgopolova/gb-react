@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+.App-main {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,16 +24,16 @@
   color: white;
 }
 
-.App-header__card {
+.App-main__card {
   padding: 24px 36px;
-  border: 2px groove rgba(255, 255, 255, 0.7);
+  border: 2px groove rgba(176, 202, 255, 0.7);
   border-radius: 8px;
-  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 6px rgba(176, 202, 255, 0.7);
 }
 
-.App-header__card:hover {
+.App-main__card:hover {
   background-color: rgba(0, 0, 0, 0.1) ;
-  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 6px rgba(176, 202, 255, 0.9);
 }
 
 .App-link {
@@ -47,4 +47,77 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-form {
+  display: flex;
+  margin: 12px 0 0;
+}
+
+.App-form__input {
+  width: 80%;
+  font-size: 22px;
+  padding: 4px;
+  line-height: 24px;
+  border: 1px groove rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 70%);
+  border-radius: 8px;
+}
+
+.App-form__btn {
+  width: 20%;
+  color: black;
+  background-color: transparent;
+  border: 1px groove rgba(176, 202, 255, 0.7);
+  box-shadow: 0px 0px 6px rgb(176 202 255 / 70%);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 6px #96b9ff;
+  border-radius: 8px;
+  margin: 0 0 0 12px;
+}
+
+.App-form__btn:hover {
+  color: black;
+  background-color: #96B9FF;
+  border: 1px groove rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 70%);
+  color: black;
+}
+
+.App-message-list__row {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.App-message-list__row.right {
+  justify-content: right;
+}
+
+.App-message-list {
+  max-width: 600px;
+  background: #FCB18D;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: justify;
+}
+
+.App-message-list.user {
+  background: #96B9FF;
+}
+
+.App-message-list__history {
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+  background-color: white;
+  color: black;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px groove rgba(176, 202, 255, 0.7);
+  box-shadow: 0px 0px 6px rgb(176 202 255 / 70%);
 }
