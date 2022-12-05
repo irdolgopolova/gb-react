@@ -1,9 +1,17 @@
 import './App.css';
 import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { Provider } from "react-redux";
 import React from 'react';
 import Routes from './components/Routes';
+import { profileReducer}  from "./store/profile/reducer";
+import { createStore } from 'redux';
 
 function App() {
+  const store = createStore(
+    profileReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+  
   const theme = createTheme({
     palette: {
       main: "#96B9FF",
@@ -71,13 +79,15 @@ function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <div className="App-main">
-          <Routes />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <div className="App-main">
+            <Routes />
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
