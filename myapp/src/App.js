@@ -3,15 +3,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { Provider } from "react-redux";
 import React from 'react';
 import Routes from './components/Routes';
-import { profileReducer}  from "./store/profile/reducer";
-import { createStore } from 'redux';
+import { store } from "./store/index"
 
 function App() {
-  const store = createStore(
-    profileReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-  
   const theme = createTheme({
     palette: {
       main: "#96B9FF",
