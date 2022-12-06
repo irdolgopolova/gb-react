@@ -45,15 +45,15 @@ export default function ChatList() {
     }
 
     const renderChatList = (chatId) => {
-        const listItems = chatList.map(chat => (
+        const listItems = chatList.map((chat, index) => (
             <div
                 className="App-message-list__chat_list__block"
-                key={`block__${chat.id}`}
+                key={`block__${index}`}
             >
                 <Link
                     className="App-message-list__chat_list__link"
                     to={`/chats/${chat.id}`}
-                    key={chat.id}
+                    key={index}
                 >
                     <ListItem
                         button={true}
@@ -69,7 +69,7 @@ export default function ChatList() {
                     </ListItem>
                 </Link>
                 <Button
-                    key={`btn__${chat.id}`}
+                    key={`btn__${index}`}
                     onClick={onDeleteChat}
                     data-chat_id={chat.id}
                 >
