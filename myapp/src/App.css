@@ -98,6 +98,12 @@
   display: flex;
 }
 
+.App-message-list__chat_list__block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .App-message-list__chat_list {
   width: 100%;
   max-width: 300px;
