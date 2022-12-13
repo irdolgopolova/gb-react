@@ -1,23 +1,9 @@
-import { useCallback, useState } from "react";
-import { changeName } from "../store/profile/actions";
-import { useSelector, useDispatch, shallowEqual } from 'react-redux'
-import { getProfileName } from "../store/profile/selectors";
-
-export default function Profile() {
-    const userName = useSelector(getProfileName, shallowEqual);
-
-    const [value, setValue] = useState('');
-
-    const dispatch = useDispatch();
-
-    const handleChange = useCallback((e) => {
-        setValue(e.target.value);
-    }, [dispatch]);
-
-    const setName = useCallback(() => {
-        dispatch(changeName(value))
-    }, [dispatch, value]);
-
+export function Profile({
+    userName,
+    value,
+    handleChange,
+    setName
+}) {
     return (
         <>
             <div>
