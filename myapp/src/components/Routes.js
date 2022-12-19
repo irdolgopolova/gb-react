@@ -9,6 +9,7 @@ import ProfileContainer from "./ProfileContainer";
 import Main from "./Main";
 import ChatListContainer from "./ChatListContainer";
 import NoChat from "./NoChat";
+import GistsList from "./GistsList";
 
 export default function Routes() {
     return (
@@ -24,6 +25,9 @@ export default function Routes() {
                     <li>
                         <Link to="/profile">Профиль</Link>
                     </li>
+                    <li>
+                        <Link to="/gists">Gists</Link>
+                    </li>
                 </ul>
             </nav>
             <Switch>
@@ -32,6 +36,7 @@ export default function Routes() {
                 <Route exact path="/chats/:chatId" element={<ChatListContainer />}></Route>
                 <Route path="/profile/" element={<ProfileContainer />}></Route>
                 <Route path="/nochat/" element={<NoChat />}></Route>
+                <Route path="/gists/" element={<GistsList />}></Route>
             </Switch>
         </Router>
     );
