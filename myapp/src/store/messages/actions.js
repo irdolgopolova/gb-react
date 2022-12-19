@@ -6,3 +6,11 @@ export const addMessage = (chatId, author, message) => ({
     author,
     message,
 })
+
+export const addMessageWithThunk = (chatId, author, message) => (dispatch, getState) => {
+    dispatch(addMessage(chatId, author, message));
+    if (author !== "currentUser") {
+        const botMessage = "На данный момент сервис не доступен, попробуйте позже";
+        setTimeout(() => dispatch(addMessage(chatId, "currentUser", botMessage)), 2000);
+    }
+}

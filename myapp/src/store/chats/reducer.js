@@ -45,7 +45,7 @@ export const chatsReducer = (state = initialState, action) => {
                 Number(el.id) === Number(action.chatId)
             );
 
-            if (index != -1) {
+            if (index !== -1) {
                 state.chatList.splice(index, 1);
             }
 

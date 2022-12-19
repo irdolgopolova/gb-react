@@ -1,4 +1,4 @@
-import ChatList from "./ChatList";
+import ChatList from "./ChatListContainer";
 
 export default function NoChat() {
     return (

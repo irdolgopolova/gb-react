@@ -5,9 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Profile from "./Profile";
+import ProfileContainer from "./ProfileContainer";
 import Main from "./Main";
-import ChatList from "./ChatList";
+import ChatListContainer from "./ChatListContainer";
 import NoChat from "./NoChat";
 
 export default function Routes() {
@@ -28,9 +28,9 @@ export default function Routes() {
             </nav>
             <Switch>
                 <Route exact path="/" element={<Main />}></Route>
-                <Route exact path="/chats/" element={<ChatList />}></Route>
-                <Route exact path="/chats/:chatId" element={<ChatList />}></Route>
-                <Route path="/profile/" element={<Profile />}></Route>
+                <Route exact path="/chats/" element={<ChatListContainer />}></Route>
+                <Route exact path="/chats/:chatId" element={<ChatListContainer />}></Route>
+                <Route path="/profile/" element={<ProfileContainer />}></Route>
                 <Route path="/nochat/" element={<NoChat />}></Route>
             </Switch>
         </Router>

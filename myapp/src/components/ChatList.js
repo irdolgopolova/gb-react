@@ -9,42 +9,24 @@ import {
     DialogTitle,
     TextField
 } from "@mui/material";
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useParams } from "react-router-dom";
-import { addChat, deleteChat } from "../store/chats/actions";
-import { getChatList } from "../store/chats/selectors";
-import Chat from "./Chat";
+import React from 'react';
+import { Link, Navigate } from "react-router-dom";
+import { ChatContainer } from "./ChatContainer";
 
-export default function ChatList() {
-    const { chatId } = useParams();
 
-    const [visible, setVisible] = useState(false);
-    const [newChatName, setNewChatName] = useState("");
-
-    const chatList = useSelector(getChatList);
-
-    const dispatch = useDispatch();
-
-    const handleClose = () => setVisible(false);
-    const handleOpen = () => setVisible(true);
-    const handleChange = (e) => setNewChatName(e.target.value);
-
-    const onAddChat = () => {
-        dispatch(addChat(newChatName));
-        setNewChatName("");
-        handleClose();
-    };
-
-    const onDeleteChat = (e) => {
-        dispatch(deleteChat(e.target.dataset.chat_id));
-    };
-
-    if (!!chatId && chatList.findIndex(i => i.id === Number(chatId)) === -1) {
-        return <Navigate to="/nochat" />;
-    }
-
-    const renderChatList = (chatId) => {
+export function ChatList({
+    chatId,
+    chatList,
+    visible,
+    handleOpen,
+    handleClose,
+    handleChange,
+    newChatName,
+    onDeleteChat,
+    onAddChat,
+    existsActiveChat
+}) {
+    const renderChatList = () => {
         const listItems = chatList.map((chat, index) => (
             <div
                 className="App-message-list__chat_list__block"
@@ -85,11 +67,15 @@ export default function ChatList() {
         );
     }
 
+    if (existsActiveChat) {
+        return <Navigate to="/nochat" />;
+    }
+
     return (
         <div className="App-main__card">
             <div className="App-message-list__chat">
                 <div className="App-message-list__chat_list">
-                    {renderChatList(chatId)}
+                    {renderChatList(chatList, chatId)}
 
                     <Button className="add-chat" onClick={handleOpen}>
                         Добавить чат
@@ -118,7 +104,7 @@ export default function ChatList() {
                                 className="App-message-list__current_chat"
                                 key={chatId}
                             >
-                                <Chat />
+                                <ChatContainer />
                             </div>)
                         : null
                 }
