@@ -17,7 +17,6 @@ const initialState = {
     error: null,
 };
 
-console.log(initialState);
 const gistsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_GISTS_REQUEST:

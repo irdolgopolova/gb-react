@@ -3,7 +3,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { Provider } from "react-redux";
 import React from 'react';
 import Routes from './components/Routes';
-import { store } from "./store/index"
+import { store } from "./store/index";
+import "./services/firebase";
 
 function App() {
   const theme = createTheme({

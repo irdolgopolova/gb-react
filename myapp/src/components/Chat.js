@@ -23,7 +23,7 @@ export function Chat({
                 className={`App-message-list__row ${message.author === profileName ? 'right' : ''}`}
             >
                 <p className={`App-message-list ${message.author === profileName ? 'user' : ''}`}>
-                    {message.text}
+                    {message.message}
                 </p>
             </div>
         ));
