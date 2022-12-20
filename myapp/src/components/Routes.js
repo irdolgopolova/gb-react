@@ -34,7 +34,7 @@ export default function Routes() {
         <Router>
             <Menu authed={authed} />
             <Switch>
-                <Route exact path="/" element={<Main />}></Route>
+                <Route exact path="/" element={<Main authed={authed} />}></Route>
                 <Route exact path="/home" element={<Home authed={authed} />}></Route>
                 <Route exact path="/chats/" element={<ChatListContainer authed={authed} />}></Route>
                 <Route exact path="/chats/:chatId" element={<ChatListContainer authed={authed} />}></Route>

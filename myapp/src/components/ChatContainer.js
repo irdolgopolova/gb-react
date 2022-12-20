@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom";
-import { addMessageWithFirebase, addMessageWithThunk, initMessageTracking } from "../store/messages/actions";
+import { addMessageWithFirebase, initMessageTracking } from "../store/messages/actions";
 import { getProfileName } from "../store/profile/selectors";
 import { Chat } from './Chat';
 
@@ -10,7 +10,7 @@ export function ChatContainer() {
 
     const [newMessage, setNewMessage] = useState('');
     const messageList = useSelector((state) => state.messages.messages);
-    const messages =  messageList[chatId];
+    const messages = messageList[chatId];
 
     const profileName = useSelector(getProfileName, shallowEqual);
 
@@ -19,9 +19,13 @@ export function ChatContainer() {
     const onAddMessage = useCallback((event) => {
         event.preventDefault();
 
+        let newId = (messages !== undefined)
+            ? messages.length + 1
+            : 1;
+
         dispatch(
             addMessageWithFirebase(chatId, {
-                id: messages.length + 1,
+                id: newId,
                 author: profileName,
                 message: newMessage
             })
@@ -40,7 +44,8 @@ export function ChatContainer() {
     }, [dispatch]);
 
     const isEmptyMessagesList = (messages) => {
-        return Object.keys(messages).length === 0;
+        return messages === undefined ||
+            Object.keys(messages).length === 0;
     }
 
     return (

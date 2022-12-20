@@ -27,10 +27,6 @@ export function ChatList({
     existsActiveChat
 }) {
     const renderChatList = () => {
-        if (Object.keys(chatList).lengh === 0) {
-            return [];
-        }
-
         const listItems = chatList.map((chat, index) => (
             <div
                 className="App-message-list__chat_list__block"

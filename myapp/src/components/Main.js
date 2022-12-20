@@ -1,6 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
-export default function Main() {
+export default function Main({ authed }) {
+    if (authed) {
+        return (<Navigate to="/home"/>);
+    }
+
     return (
         <>
         <h3>Главная страница</h3>
