@@ -1,6 +1,6 @@
 import { CHANGE_NAME } from "./actions"
 
-const initialState = {
+export const initialState = {
     showName: false,
     name: 'Default',
 }
