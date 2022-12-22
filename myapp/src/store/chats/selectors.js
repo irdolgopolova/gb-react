@@ -3,5 +3,5 @@ export function getChatList(state) {
 }
 
 export function getChatById(chatId) {
-    return (state) => state.chats.chatList[chatId]
+    return (state) => state.chats.chatList[chatId];
 }

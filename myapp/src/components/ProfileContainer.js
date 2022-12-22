@@ -3,8 +3,9 @@ import { changeName } from "../store/profile/actions";
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { getProfileName } from "../store/profile/selectors";
 import { Profile } from "./Profile";
+import { Navigate } from "react-router-dom";
 
-export default function ProfileContainer() {
+export default function ProfileContainer({ authed }) {
     const userName = useSelector(getProfileName, shallowEqual);
 
     const [value, setValue] = useState('');
@@ -18,6 +19,10 @@ export default function ProfileContainer() {
     const setName = useCallback(() => {
         dispatch(changeName(value))
     }, [dispatch, value]);
+
+    if (!authed) {
+        return (<Navigate to="/"/>);
+    }
 
     return (
         <Profile

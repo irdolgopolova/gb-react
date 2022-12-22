@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom";
-import { addMessageWithThunk } from "../store/messages/actions";
-import { getMessageList } from "../store/messages/selectors";
+import { addMessageWithFirebase, initMessageTracking } from "../store/messages/actions";
 import { getProfileName } from "../store/profile/selectors";
 import { Chat } from './Chat';
 
@@ -10,34 +9,51 @@ export function ChatContainer() {
     const { chatId } = useParams();
 
     const [newMessage, setNewMessage] = useState('');
+    const messageList = useSelector((state) => state.messages.messages);
+    const messages = messageList[chatId];
 
-    const messageList = useSelector(getMessageList, shallowEqual);
     const profileName = useSelector(getProfileName, shallowEqual);
 
     const dispatch = useDispatch();
 
     const onAddMessage = useCallback((event) => {
         event.preventDefault();
-        dispatch(addMessageWithThunk(chatId, profileName, newMessage));
+
+        let newId = (messages !== undefined)
+            ? messages.length + 1
+            : 1;
+
+        dispatch(
+            addMessageWithFirebase(chatId, {
+                id: newId,
+                author: profileName,
+                message: newMessage
+            })
+        )
+
         setNewMessage("");
         document.myForm.reset();
-    }, [dispatch, newMessage]);
+    }, [newMessage]);
+
+    useEffect(() => {
+        dispatch(initMessageTracking());
+    }, []);
 
     const handleChange = useCallback((e) => {
         setNewMessage(e.target.value);
     }, [dispatch]);
 
-    const isEmptyMessagesList = (messageList) => {
-        return Object.keys(messageList).length === 0
-            || !messageList.hasOwnProperty(chatId);
+    const isEmptyMessagesList = (messages) => {
+        return messages === undefined ||
+            Object.keys(messages).length === 0;
     }
 
     return (
         <Chat
             newMessage={newMessage}
             profileName={profileName}
-            messages={messageList[chatId]}
-            isEmptyMessagesList={isEmptyMessagesList(messageList)}
+            messages={messages}
+            isEmptyMessagesList={isEmptyMessagesList(messages)}
             onAddMessage={onAddMessage}
             handleChange={handleChange}
         />
