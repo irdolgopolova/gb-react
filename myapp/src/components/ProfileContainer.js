@@ -14,7 +14,7 @@ export default function ProfileContainer({ authed }) {
 
     const handleChange = useCallback((e) => {
         setValue(e.target.value);
-    }, [dispatch]);
+    }, []);
 
     const setName = useCallback(() => {
         dispatch(changeName(value))

@@ -4,6 +4,8 @@ import {
 } from "@mui/material";
 import React from 'react';
 
+
+
 export function Chat({
     onAddMessage,
     newMessage,
@@ -12,6 +14,7 @@ export function Chat({
     isEmptyMessagesList,
     profileName
 }) {
+
     const renderMessageList = () => {
         if (isEmptyMessagesList) {
             return [];
@@ -29,10 +32,12 @@ export function Chat({
         ));
     }
 
+    const RenderMessageListPure = React.memo(renderMessageList);
+
     return (
         <>
         <div className="App-message-list__history">
-            {renderMessageList()}
+            <RenderMessageListPure />
         </div>
 
         <form className="App-form" name="myForm" onSubmit={onAddMessage}>

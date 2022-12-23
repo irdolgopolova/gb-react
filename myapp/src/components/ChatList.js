@@ -71,11 +71,14 @@ export function ChatList({
         return <Navigate to="/nochat" />;
     }
 
+    const RenderChatListPure = React.memo(renderChatList);
+
+
     return (
         <div className="App-main__card">
             <div className="App-message-list__chat">
                 <div className="App-message-list__chat_list">
-                    {renderChatList(chatList, chatId)}
+                    <RenderChatListPure chatList={chatList} chatId={chatId} />
 
                     <Button className="add-chat" onClick={handleOpen}>
                         Добавить чат

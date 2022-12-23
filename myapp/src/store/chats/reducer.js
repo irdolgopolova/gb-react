@@ -1,6 +1,6 @@
 import { ADD_CHAT, DELETE_CHAT } from "./actions"
 
-const initialState = {
+export const initialState = {
     chatList: [
         {
             id: 1,

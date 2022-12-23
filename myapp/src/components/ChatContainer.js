@@ -33,15 +33,15 @@ export function ChatContainer() {
 
         setNewMessage("");
         document.myForm.reset();
-    }, [newMessage]);
+    }, [dispatch, newMessage, chatId, messages, profileName]);
 
     useEffect(() => {
         dispatch(initMessageTracking());
-    }, []);
+    }, [dispatch]);
 
     const handleChange = useCallback((e) => {
         setNewMessage(e.target.value);
-    }, [dispatch]);
+    }, []);
 
     const isEmptyMessagesList = (messages) => {
         return messages === undefined ||
